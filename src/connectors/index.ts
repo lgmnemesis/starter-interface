@@ -26,8 +26,9 @@ export function getNetworkLibrary(): Web3Provider {
   return (networkLibrary = networkLibrary ?? new Web3Provider(network.provider as any))
 }
 
+const extraChainIds = process.env.REACT_APP_SUPPORTED_CHAIN_IDS?.split(' ').map(x => +x) || []
 export const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42]
+  supportedChainIds: [1, 3, 4, 5, 42, ...extraChainIds]
 })
 
 // mainnet only
